@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceB.API", "ServiceB.API\ServiceB.API.csproj", "{1ACD2E42-6FBE-49AF-B7BA-1DC34EA6CB98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceB.Infrastructure", "ServiceB.Infrastructure\ServiceB.Infrastructure.csproj", "{9D84EB2D-C897-4F38-97A6-05860008CE35}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1ACD2E42-6FBE-49AF-B7BA-1DC34EA6CB98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ACD2E42-6FBE-49AF-B7BA-1DC34EA6CB98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ACD2E42-6FBE-49AF-B7BA-1DC34EA6CB98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ACD2E42-6FBE-49AF-B7BA-1DC34EA6CB98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D84EB2D-C897-4F38-97A6-05860008CE35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D84EB2D-C897-4F38-97A6-05860008CE35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D84EB2D-C897-4F38-97A6-05860008CE35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D84EB2D-C897-4F38-97A6-05860008CE35}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1142DC55-9078-419F-BF73-6DC68F01E570}
+	EndGlobalSection
+EndGlobal

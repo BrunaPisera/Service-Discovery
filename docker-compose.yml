@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  consul:
+    image: hashicorp/consul:1.21
+    container_name: consul
+    ports:
+      - "8500:8500" 
+      - "8600:8600/udp"
+    command: agent -dev -client=0.0.0.0
+    networks:
+      - service_discovery
+  servicea:
+      build: ./ServiceA
+      container_name: servicea
+      ports:
+      - "5000:80"
+      networks:
+      - service_discovery
+  serviceb:
+      build: ./ServiceB
+      container_name: serviceb
+      ports:
+      - "5001:80"
+      networks:
+      - service_discovery
+networks:
+  service_discovery:
