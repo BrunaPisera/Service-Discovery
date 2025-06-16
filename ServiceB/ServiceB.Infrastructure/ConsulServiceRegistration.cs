@@ -22,7 +22,7 @@ namespace ServiceB.Infrastructure
             var registration = new AgentServiceRegistration()
             {
                 ID = _registrationId,
-                Name = _config.ServiceName,
+                Name = _config.ServiceName + Guid.NewGuid(),
                 Address = address,
                 Port = _config.ServicePort,
                 Check = new AgentServiceCheck

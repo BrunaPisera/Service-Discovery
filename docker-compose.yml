@@ -19,9 +19,9 @@ services:
       - service_discovery
   serviceb:
       build: ./ServiceB
-      container_name: serviceb
+      #container_name: serviceb
       ports:
-      - "5001:80"
+      - "80"
       networks:
       - service_discovery
 networks:
