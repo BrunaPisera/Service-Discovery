@@ -3,13 +3,15 @@ version: '3.8'
 services:
   consul:
     image: hashicorp/consul:1.21
-    container_name: consul
+    container_name: consul    
     ports:
       - "8500:8500" 
       - "8600:8600/udp"
+    environment:
+      - CONSUL_UI_REFRESH_INTERVAL=2
     command: agent -dev -client=0.0.0.0
     networks:
-      - service_discovery
+      - service_discovery      
   servicea:
       build: ./ServiceA
       container_name: servicea
@@ -19,9 +21,18 @@ services:
       - service_discovery
   serviceb:
       build: ./ServiceB
-      #container_name: serviceb
+      environment:
+      - SERVICE_NAME=serviceb
       ports:
-      - "80"
+      - "5001:80"
+      networks:
+      - service_discovery
+  serviceb1:
+      build: ./ServiceB
+      environment:
+      - SERVICE_NAME=serviceb
+      ports:
+      - "5002:80"
       networks:
       - service_discovery
 networks:

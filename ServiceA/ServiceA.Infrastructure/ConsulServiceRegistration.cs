@@ -16,8 +16,7 @@ namespace ServiceA.Infrastructure
 
         public async Task RegisterAsync(string address)
         {
-            _registrationId = $"{_config.ServiceName}";
-            //_registrationId = $"{_config.ServiceName}-{Guid.NewGuid()}";
+            _registrationId = $"{_config.ServiceName}";  
 
             var registration = new AgentServiceRegistration()
             {

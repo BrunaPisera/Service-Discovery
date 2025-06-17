@@ -1,4 +1,5 @@
 ﻿using Consul;
+using System.Net;
 
 namespace ServiceB.Infrastructure
 {
@@ -14,23 +15,28 @@ namespace ServiceB.Infrastructure
             _config = config;
         }
 
-        public async Task RegisterAsync(string address)
-        {
-            _registrationId = $"{_config.ServiceName}";
-            //_registrationId = $"{_config.ServiceName}-{Guid.NewGuid()}";
+        public async Task RegisterAsync()
+        {        
+            var serviceName = Environment.GetEnvironmentVariable("SERVICE_NAME") ?? _config.ServiceName;
+
+            var address = Dns.GetHostEntry(Dns.GetHostName())
+                .AddressList.First(x => x.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                .ToString();
+
+            _registrationId = $"{_config.ServiceName}-{Guid.NewGuid()}";       
 
             var registration = new AgentServiceRegistration()
             {
                 ID = _registrationId,
-                Name = _config.ServiceName + Guid.NewGuid(),
+                Name = serviceName,
                 Address = address,
                 Port = _config.ServicePort,
                 Check = new AgentServiceCheck
                 {
                     HTTP = $"http://{address}:{_config.ServicePort}/health",
-                    Interval = TimeSpan.FromSeconds(10),
-                    Timeout = TimeSpan.FromSeconds(5),
-                    DeregisterCriticalServiceAfter = TimeSpan.FromMinutes(1)
+                    Interval = TimeSpan.FromSeconds(1),
+                    Timeout = TimeSpan.FromSeconds(1),               
+                    DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(1)
                 }
             };
 

@@ -27,6 +27,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+var lifeTime = app.Lifetime;
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -41,8 +42,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-string address = "serviceb";
 var consulService = app.Services.GetRequiredService<ConsulServiceRegistration>();
-await consulService.RegisterAsync(address);
+await consulService.RegisterAsync();
+
+lifeTime.ApplicationStopping.Register(async () => {  
+    await consulService.DeregisterAsync();
+});
 
 app.Run();
